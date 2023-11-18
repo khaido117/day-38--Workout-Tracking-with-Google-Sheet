@@ -1,8 +1,10 @@
 import requests
 from datetime import datetime
+import os
+from dotenv import load_dotenv
 
-APP_ID = "f1832bc7"
-API_KEY = "1a81fe0cddee61a5871ae922d73b0a46"
+# Load environment variables from .env file
+load_dotenv()
 
 GENDER = "MALE"
 WEIGHT_KG = "80"
@@ -20,8 +22,8 @@ user_params = {
 }
 
 header = {
-    "x-app-id": APP_ID,
-    "x-app-key": API_KEY
+    "x-app-id": os.environ["APP_ID"],
+    "x-app-key": os.environ["API_KEY"]
 }
 response = requests.post(url=excercise_endpoint, json= user_params, headers= header)
 result = response.json()
@@ -40,7 +42,7 @@ exercise_params = {
 }
 
 header_auth = {
-    "Authorization": "Basic a2hhaXRyb3k6S2hhaTEyMw=="
+    "Authorization": os.environ["AUTHORIZATION"]
 }
 
 for exercise in result["exercises"]:
@@ -55,4 +57,4 @@ for exercise in result["exercises"]:
     }
 
 sheet_response = requests.post(url=sheet_endpoint, json=sheet_inputs, headers=header_auth)
-# print(response.text)
+
