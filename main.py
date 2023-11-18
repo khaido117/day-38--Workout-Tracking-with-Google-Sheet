@@ -6,6 +6,7 @@ from dotenv import load_dotenv
 # Load environment variables from .env file
 load_dotenv()
 
+#Variable
 GENDER = "MALE"
 WEIGHT_KG = "80"
 HEIGHT_CM = "175"
