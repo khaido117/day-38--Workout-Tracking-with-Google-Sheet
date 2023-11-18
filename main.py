@@ -4,8 +4,6 @@ from datetime import datetime
 APP_ID = "f1832bc7"
 API_KEY = "1a81fe0cddee61a5871ae922d73b0a46"
 
-
-
 GENDER = "MALE"
 WEIGHT_KG = "80"
 HEIGHT_CM = "175"
@@ -41,6 +39,10 @@ exercise_params = {
     "Calories": "220"
 }
 
+header_auth = {
+    "Authorization": "Basic a2hhaXRyb3k6S2hhaTEyMw=="
+}
+
 for exercise in result["exercises"]:
     sheet_inputs = {
         "workout": {
@@ -52,5 +54,5 @@ for exercise in result["exercises"]:
         }
     }
 
-sheet_response = requests.post(url=sheet_endpoint, json=sheet_inputs)
+sheet_response = requests.post(url=sheet_endpoint, json=sheet_inputs, headers=header_auth)
 # print(response.text)
